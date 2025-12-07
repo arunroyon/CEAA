@@ -51,6 +51,26 @@
             max-height: 400px;
         }
 
+        /* Carousel Styles */
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px; /* Adjustable height */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Custom Utilities */
         .card-hover:hover {
             transform: translateY(-5px);
@@ -68,20 +88,16 @@
     </style>
 
     <!-- Application Structure Plan:
-         1. Hero: Branding, Mission & Vision (extracted from PDF Page 1 & 2).
-         2. Workforce & Stats: Interactive Chart showing PhDs, UG/PG students, and Publications (Page 3 & 5).
-         3. Faculty Directory: Grid of the 8 names listed in the PDF (Page 4).
-         4. Global Collaborations: List of MoU and Science partners (Page 6).
-         5. Events Horizon: Cards for Upcoming 2025-2026 events (Pages 8-13).
+         1. Nav: Updated links (About, People, Research, etc.).
+         2. Hero: Vision & Mission only.
+         3. Carousel: Auto-scrolling image slider.
+         4. About CEAA: Intro text.
+         5. Coordinator Message: Photo + Text.
+         6. Members: Grid of names (Updated Title).
+         7. Research Output: Chart.
+         8. Collaborations: List.
+         9. Events: Timeline Cards.
     -->
-
-    <!-- Visualization & Content Choices:
-         1. Research Output: Bar Chart. Goal: Compare. Method: Chart.js. Interaction: Hover for exact numbers. Justification: Clearly compares student numbers across levels (UG/PG/PhD).
-         2. Events: Timeline Cards. Goal: Inform/Change. Method: HTML/CSS. Interaction: Static clear display. Justification: Chronological order is key for "Upcoming" events.
-         3. Partners: Logo Grid (Text based). Goal: Relationships. Method: Flexbox.
-    -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="flex flex-col min-h-screen">
 
@@ -100,109 +116,207 @@
                         <span class="font-bold text-lg leading-tight">Astronomy & Astrophysics</span>
                     </div>
                 </div>
-                <div class="flex items-center space-x-6 text-sm font-medium">
-                    <a href="#about" class="hover:text-[#C5A059] transition-colors">About</a>
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-4 text-sm font-medium">
+                    <a href="#about-ceaa" class="hover:text-[#C5A059] transition-colors">About CEAA</a>
                     <a href="#people" class="hover:text-[#C5A059] transition-colors">People</a>
                     <a href="#research" class="hover:text-[#C5A059] transition-colors">Research</a>
+                    <a href="#collaborations" class="hover:text-[#C5A059] transition-colors">Collaborations</a>
+                    <a href="#outreach" class="hover:text-[#C5A059] transition-colors">Outreach</a>
                     <a href="#events" class="hover:text-[#C5A059] transition-colors">Events</a>
+                    <a href="#careers" class="hover:text-[#C5A059] transition-colors">Careers</a>
+                    <a href="#contact" class="hover:text-[#C5A059] transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="about" class="relative bg-white overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-50"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-[#002147] mb-6">
-                    Exploring the Cosmos from Campus
-                </h1>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-                    "To develop Christ University as a global hub for research and learning in Astrophysics."
-                </p>
-                
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#002147] text-center">
-                        <i class="fa-solid fa-eye text-3xl text-[#C5A059] mb-4"></i>
-                        <h3 class="text-lg font-bold text-gray-900">Vision</h3>
-                        <p class="text-gray-600 mt-2">Excellence and Service</p>
+    <header class="relative bg-white pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#002147] mb-6">
+                Exploring the Cosmos from Campus
+            </h1>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-blue-50 p-8 rounded-lg border-l-4 border-[#002147] text-left shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-eye text-2xl text-[#C5A059] mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Vision</h3>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#002147] text-center">
-                        <i class="fa-solid fa-rocket text-3xl text-[#C5A059] mb-4"></i>
-                        <h3 class="text-lg font-bold text-gray-900">Mission</h3>
-                        <p class="text-gray-600 mt-2">A nurturing ground for holistic development and societal contribution.</p>
+                    <p class="text-gray-700 text-lg">Excellence and Service</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-lg border-l-4 border-[#002147] text-left shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-rocket text-2xl text-[#C5A059] mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Mission</h3>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#002147] text-center">
-                        <i class="fa-solid fa-scale-balanced text-3xl text-[#C5A059] mb-4"></i>
-                        <h3 class="text-lg font-bold text-gray-900">Core Values</h3>
-                        <p class="text-gray-600 mt-2">Faith in God • Moral Uprightness • Social Responsibility</p>
-                    </div>
+                    <p class="text-gray-700 text-lg">To develop Christ University as a global hub for research and learning in Astrophysics.</p>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- People / Faculty Section -->
-    <section id="people" class="py-16 bg-[#F3F4F6]">
+    <!-- Image Carousel Section -->
+    <section class="w-full bg-gray-200">
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="carousel-slide bg-gray-800 text-white relative">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-star text-6xl text-[#C5A059] mb-4"></i>
+                        <h3 class="text-2xl font-bold">State-of-the-Art Observatories</h3>
+                        <p>Exploring the night sky with precision.</p>
+                    </div>
+                    <!-- Placeholder for actual image: style="background-image: url('path/to/image1.jpg');" -->
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide bg-gray-700 text-white relative">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-atom text-6xl text-[#C5A059] mb-4"></i>
+                        <h3 class="text-2xl font-bold">Advanced Computational Labs</h3>
+                        <p>Simulating cosmic events and data analysis.</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide bg-gray-900 text-white relative">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-users-viewfinder text-6xl text-[#C5A059] mb-4"></i>
+                        <h3 class="text-2xl font-bold">Collaborative Workshops</h3>
+                        <p>Bringing together minds from across the globe.</p>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-slide bg-blue-900 text-white relative">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-satellite text-6xl text-[#C5A059] mb-4"></i>
+                        <h3 class="text-2xl font-bold">Space Missions</h3>
+                        <p>Partnering with ISRO and international agencies.</p>
+                    </div>
+                </div>
+                 <!-- Slide 5 -->
+                 <div class="carousel-slide bg-indigo-900 text-white relative">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-graduation-cap text-6xl text-[#C5A059] mb-4"></i>
+                        <h3 class="text-2xl font-bold">Student Excellence</h3>
+                        <p>Nurturing the next generation of astrophysicists.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About CEAA Section -->
+    <section id="about-ceaa" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-[#002147] section-header mb-8">About CEAA</h2>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                The Centre of Excellence in Astronomy and Astrophysics (CEAA) at Christ University stands as a premier hub for cutting-edge research and education in space sciences. Established under the Department of Physics and Electronics, the centre is dedicated to fostering a rigorous academic environment where students and faculty collaborate on breakthrough projects in observational and theoretical astrophysics. Through strategic global partnerships and advanced training programs, CEAA nurtures the intellectual curiosity of the next generation of scientists, aiming to make significant contributions to our understanding of the universe.
+            </p>
+        </div>
+    </section>
+
+    <!-- Message From Coordinator -->
+    <section class="py-16 bg-[#F3F4F6]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-[#002147] section-header mb-12">Faculty & Leadership</h2>
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <!-- Photo Side -->
+                    <div class="md:w-1/3 bg-[#002147] flex items-center justify-center p-12">
+                        <div class="text-center">
+                            <div class="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 border-4 border-[#C5A059] flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-white text-2xl font-bold font-heading">Dr. Blesson Mathew</h3>
+                            <p class="text-[#C5A059] font-medium uppercase tracking-wider mt-2">Coordinator</p>
+                        </div>
+                    </div>
+                    <!-- Message Side -->
+                    <div class="md:w-2/3 p-10 md:p-14 flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold text-[#002147] mb-6 font-heading">Message from the Coordinator</h2>
+                        <div class="prose text-gray-600 text-lg leading-relaxed">
+                            <p class="mb-4">
+                                "Welcome to the Centre of Excellence in Astronomy and Astrophysics. Our vision is to establish Christ University as a beacon of research and learning in the field of space sciences. We are committed to providing our students and researchers with world-class facilities and opportunities to collaborate with leading institutions globally."
+                            </p>
+                            <p>
+                                "At CEAA, we believe in the power of curiosity and rigorous inquiry to unravel the universe's secrets. I invite you to explore our research initiatives and join us in our journey of discovery. Together, let us strive for excellence and make meaningful contributions to the scientific community."
+                            </p>
+                        </div>
+                        <div class="mt-8">
+                           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Signature_sample.svg/1200px-Signature_sample.svg.png" alt="Signature" class="h-10 opacity-60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members / Faculty Section -->
+    <section id="people" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-[#002147] section-header mb-12">Members</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Faculty Card 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">BM</div>
-                    <h3 class="font-bold text-gray-900">Dr. Blesson Mathew</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-[#002147] rounded-full mx-auto flex items-center justify-center mb-4 text-white font-bold text-2xl border-4 border-white shadow-md">BM</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Blesson Mathew</h3>
+                    <p class="text-sm font-semibold text-[#C5A059] uppercase mt-1">Coordinator</p>
+                    <p class="text-xs text-gray-500 mt-1">Faculty</p>
                 </div>
                 <!-- Faculty Card 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">SS</div>
-                    <h3 class="font-bold text-gray-900">Dr. Sreeja S Kartha</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">SS</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Sreeja S Kartha</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">JV</div>
-                    <h3 class="font-bold text-gray-900">Dr. Jithesh V</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">JV</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Jithesh V</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">SG</div>
-                    <h3 class="font-bold text-gray-900">Dr. Shivappa B Gudennavar</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">SG</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Shivappa B Gudennavar</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 5 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">AK</div>
-                    <h3 class="font-bold text-gray-900">Dr. Arun Kenath</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">AK</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Arun Kenath</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 6 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">VV</div>
-                    <h3 class="font-bold text-gray-900">Dr. Vineeth V</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">VV</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Vineeth V</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 7 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">JB</div>
-                    <h3 class="font-bold text-gray-900">Dr. Joydeep Bagchi</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">JB</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Joydeep Bagchi</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
                 <!-- Faculty Card 8 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-xl">AR</div>
-                    <h3 class="font-bold text-gray-900">Dr. Arun Roy</h3>
-                    <p class="text-sm text-gray-500">Faculty</p>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100">
+                    <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center mb-4 text-[#002147] font-bold text-2xl border-4 border-[#002147]">AR</div>
+                    <h3 class="font-bold text-gray-900 text-lg">Dr. Arun Roy</h3>
+                    <p class="text-sm text-gray-500 mt-2">Faculty</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Research & Stats Section -->
-    <section id="research" class="py-16 bg-white">
+    <section id="research" class="py-16 bg-[#F3F4F6]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center text-[#002147] section-header mb-8">Academic Involvement & Output</h2>
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
@@ -212,17 +326,17 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
                 <!-- Data Description -->
                 <div class="lg:col-span-1 space-y-6">
-                    <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-[#002147]">
+                    <div class="bg-white p-5 rounded-lg border-l-4 border-[#002147] shadow-sm">
                         <h4 class="font-bold text-[#002147]">PhD Scholars</h4>
                         <p class="text-2xl font-bold text-[#C5A059]">30</p>
                         <p class="text-sm text-gray-600">Actively organizing conferences and leading research.</p>
                     </div>
-                    <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-[#002147]">
+                    <div class="bg-white p-5 rounded-lg border-l-4 border-[#002147] shadow-sm">
                         <h4 class="font-bold text-[#002147]">Undergraduate Research</h4>
                         <p class="text-2xl font-bold text-[#C5A059]">18</p>
                         <p class="text-sm text-gray-600">Students mentored in UGRIP. 11 active projects.</p>
                     </div>
-                    <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-[#002147]">
+                    <div class="bg-white p-5 rounded-lg border-l-4 border-[#002147] shadow-sm">
                         <h4 class="font-bold text-[#002147]">PG Publications</h4>
                         <p class="text-2xl font-bold text-[#C5A059]">9</p>
                         <p class="text-sm text-gray-600">Total publications, with 3 led directly by students.</p>
@@ -241,7 +355,7 @@
     </section>
 
     <!-- Collaborations Section -->
-    <section class="py-16 bg-[#002147] text-white">
+    <section id="collaborations" class="py-16 bg-[#002147] text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold mb-12 font-heading">Global & National Collaborations</h2>
             
@@ -279,8 +393,12 @@
         </div>
     </section>
 
+    <!-- Placeholder for Outreach/Careers (To satisfy menu links) -->
+    <div id="outreach"></div>
+    <div id="careers"></div>
+
     <!-- Events Section -->
-    <section id="events" class="py-16 bg-[#F3F4F6]">
+    <section id="events" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center text-[#002147] section-header mb-12">Upcoming Events & Conferences</h2>
             
@@ -292,7 +410,7 @@
                         <div class="w-6 h-6 bg-[#C5A059] rounded-full border-4 border-white md:hidden"></div>
                         <span class="hidden md:block font-bold text-[#002147]">Jul 2025</span>
                     </div>
-                    <div class="ml-6 md:ml-0 bg-white p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-indigo-500">
+                    <div class="ml-6 md:ml-0 bg-gray-50 p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-indigo-500">
                         <span class="md:hidden text-xs font-bold text-indigo-500 mb-2 block">15-16 July 2025</span>
                         <h3 class="text-xl font-bold text-gray-900">Advances in Cosmology</h3>
                         <p class="text-gray-600 mt-2">IUCAA Sponsored Seminar organized by CEAA, Christ University.</p>
@@ -306,7 +424,7 @@
                         <div class="w-6 h-6 bg-[#C5A059] rounded-full border-4 border-white md:hidden"></div>
                         <span class="hidden md:block font-bold text-[#002147]">Oct 2025</span>
                     </div>
-                    <div class="ml-6 md:ml-0 bg-white p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-purple-500">
+                    <div class="ml-6 md:ml-0 bg-gray-50 p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-purple-500">
                         <span class="md:hidden text-xs font-bold text-purple-500 mb-2 block">20-31 Oct 2025</span>
                         <h3 class="text-xl font-bold text-gray-900">CHRIST COSPAR Workshop</h3>
                         <p class="text-gray-600 mt-2">"A Hands-on Workshop with JWST-UVIT". Engage in expert lectures, data analysis, and proposal writing.</p>
@@ -320,7 +438,7 @@
                         <div class="w-6 h-6 bg-[#C5A059] rounded-full border-4 border-white md:hidden"></div>
                         <span class="hidden md:block font-bold text-[#002147]">Feb 2026</span>
                     </div>
-                    <div class="ml-6 md:ml-0 bg-white p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-green-500">
+                    <div class="ml-6 md:ml-0 bg-gray-50 p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-green-500">
                         <span class="md:hidden text-xs font-bold text-green-500 mb-2 block">05-07 Feb 2026</span>
                         <h3 class="text-xl font-bold text-gray-900">Regional Astronomers' Meet (RAM-XI)</h3>
                         <p class="text-gray-600 mt-2">"Research in Astronomy: Opportunities and Challenges". Organized in collaboration with IUCAA Pune.</p>
@@ -334,7 +452,7 @@
                         <div class="w-6 h-6 bg-[#C5A059] rounded-full border-4 border-white md:hidden"></div>
                         <span class="hidden md:block font-bold text-[#002147]">2026</span>
                     </div>
-                    <div class="ml-6 md:ml-0 bg-white p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-orange-500">
+                    <div class="ml-6 md:ml-0 bg-gray-50 p-6 rounded-lg shadow-md flex-1 card-hover border-l-4 border-orange-500">
                         <span class="md:hidden text-xs font-bold text-orange-500 mb-2 block">2026 TBD</span>
                         <h3 class="text-xl font-bold text-gray-900">Star Formation Studies in India</h3>
                         <p class="text-gray-600 mt-2">Collaborative effort between CHRIST and IIA. Focusing on observational and theoretical results.</p>
@@ -347,7 +465,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#1F2937] text-white py-12 border-t border-gray-700">
+    <footer id="contact" class="bg-[#1F2937] text-white py-12 border-t border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -373,6 +491,28 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // --- Carousel Logic ---
+            const track = document.getElementById('carouselTrack');
+            let slideIndex = 0;
+            const slides = track.children;
+            const totalSlides = slides.length;
+
+            function updateCarousel() {
+                const width = slides[0].getBoundingClientRect().width;
+                track.style.transform = `translateX(-${slideIndex * width}px)`;
+            }
+
+            function nextSlide() {
+                slideIndex = (slideIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            // Handle Resize
+            window.addEventListener('resize', updateCarousel);
+
+            // Auto Scroll every 5 seconds
+            setInterval(nextSlide, 5000);
+
             // --- Research Stats Chart ---
             const ctx = document.getElementById('researchChart').getContext('2d');
             new Chart(ctx, {
